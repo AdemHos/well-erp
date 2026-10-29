@@ -1,0 +1,16 @@
+.env*
+.agents/
+.claude/
+.windsurf/
+.codex/
+.aws/
+.git/
+.backups/
+.tools/
+tmp/
+docs/
+tests/
+scripts/
+.next/
+node_modules/
+*.tsbuildinfo

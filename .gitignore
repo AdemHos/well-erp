@@ -39,3 +39,25 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/src/generated/prisma
+
+/.backups/
+/.tools/
+/tmp/
+
+# Local agent packages and machine-specific tooling
+/.agents/
+/.claude/
+/.windsurf/
+/skills-lock.json
+
+# Operational evidence can contain private test/business data
+/docs/acceptance/
+/docs/migrations/
+/docs/*live*.json
+/docs/database-backups.md
+/docs/vercel-deployment.md
+
+# Safe configuration template
+!.env.example

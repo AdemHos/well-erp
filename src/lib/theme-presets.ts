@@ -1,0 +1,14 @@
+export const themePresets = [
+  { id: "light", name: "Açık", description: "Beyaz ve açık gri; sade görünüm.", mode: "light", preview: ["#f8fafc", "#ffffff", "#2563eb"], colors: {} },
+  { id: "warm", name: "Sıcak", description: "Krem yüzeyler ve yumuşak toprak tonları.", mode: "light", preview: ["#f3efe7", "#fffdf8", "#786247"], colors: { bg: "#f3efe7", surface: "#fffdf8", subtle: "#f7f2e9", raised: "#eae2d5", border: "#d4c8b5", text: "#3e382f", muted: "#746959", input: "#fffefb", selection: "#e8dcc5", action: "#786247", hover: "#655239", link: "#725735", accent: "#f0e5d2" } },
+  { id: "dark", name: "Gece", description: "Mevcut koyu görünüm; yumuşak mavi-gri.", mode: "dark", preview: ["#0b1120", "#24313f", "#a8dbc9"], colors: {} },
+  { id: "graphite", name: "Grafit", description: "Nötr füme yüzeyler ve sakin mavi vurgular.", mode: "dark", preview: ["#18191c", "#2c2f35", "#b4c9ed"], colors: { bg: "#18191c", surface: "#25272b", subtle: "#202226", raised: "#34373e", card: "#2c2f35", cart: "#24262b", border: "#565b65", text: "#e5e7eb", muted: "#b7bdc8", input: "#1c1e22", selection: "#414858", action: "#546888", hover: "#4a5d7b", link: "#b4c9ed", accent: "#303b50" } },
+  { id: "ocean", name: "Okyanus", description: "Petrol mavisi yüzeyler ve serin vurgular.", mode: "dark", preview: ["#0c202a", "#1b3b4a", "#a4d8ea"], colors: { bg: "#0c202a", surface: "#17323f", subtle: "#102a36", raised: "#224554", card: "#1b3b4a", cart: "#142e3a", border: "#497183", text: "#e0eef2", muted: "#a9c7d1", input: "#0e2530", selection: "#24576b", action: "#276c80", hover: "#205d70", link: "#a4d8ea", accent: "#1b4557" } },
+  { id: "forest", name: "Orman", description: "Koyu adaçayı yüzeyler ve doğal yeşiller.", mode: "dark", preview: ["#13231e", "#294236", "#b2d9bd"], colors: { bg: "#13231e", surface: "#20382f", subtle: "#192f27", raised: "#304c40", card: "#294236", cart: "#1e342b", border: "#547665", text: "#e3eee6", muted: "#b4cabc", input: "#14291f", selection: "#3a5946", action: "#3d705a", hover: "#335f4c", link: "#b2d9bd", accent: "#2c4836" } },
+] as const;
+export type ThemePreset = typeof themePresets[number]["id"];
+export type ThemePreference = ThemePreset | "system";
+export function parseTheme(value: string | null): ThemePreference { return value === "system" || themePresets.some(p => p.id === value) ? value as ThemePreference : "light"; }
+export function resolvePreset(preference: ThemePreference, systemDark: boolean): ThemePreset { return preference === "system" ? systemDark ? "dark" : "light" : preference; }
+export function getThemePreset(id: ThemePreset) { return themePresets.find(p => p.id === id) ?? themePresets[0]; }
+export function resolveTheme(preference: ThemePreference, systemDark: boolean): "light" | "dark" { return getThemePreset(resolvePreset(preference, systemDark)).mode; }

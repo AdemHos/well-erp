@@ -1,0 +1,146 @@
+.workspace {
+  --finance-primary: #2563eb;
+  --finance-primary-foreground: #fff;
+  --finance-card: #fff;
+  --finance-border: #e2eaf5;
+  --finance-muted: #f0f5fc;
+  --finance-muted-foreground: #64748b;
+  --background: #fff;
+  --foreground: #172b4d;
+  color: var(--foreground);
+  color-scheme: light;
+  background: radial-gradient(ellipse at 95% 0, #dbeafe70, transparent 42%);
+  border-radius: 1.75rem;
+  min-width: 0;
+}
+
+.workspace :global(.finance-panel) {
+  border: 1px solid #e6edf7;
+  background: #fff;
+  box-shadow: 0 4px 24px -12px #1e40af1a;
+}
+
+.workspace :global(.finance-button),
+.workspace :global(.finance-secondary) {
+  gap: .5rem;
+  min-height: 2.65rem;
+  transition: background .18s, box-shadow .18s, border-color .18s;
+}
+
+.workspace :global(.finance-button) {
+  color: #fff;
+  background: linear-gradient(120deg, #2563eb, #3b82f6);
+  border: 1px solid transparent;
+  box-shadow: 0 4px 12px -4px #2563eb70;
+}
+
+.workspace :global(.finance-button:hover:not(:disabled)) {
+  background: linear-gradient(120deg, #1d4ed8, #2563eb);
+  box-shadow: 0 6px 16px -5px #2563eb80;
+}
+
+.workspace :global(.finance-secondary) {
+  color: #315a9c;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+}
+
+.workspace :global(.finance-secondary:hover:not(:disabled)) {
+  background: #dbeafe;
+  border-color: #bfdbfe;
+}
+
+.workspace :global(.finance-danger) {
+  color: #be123c;
+  background: #fff1f2;
+  border-color: #ffe4e6;
+}
+
+.workspace :global(.finance-danger:hover:not(:disabled)) {
+  background: #ffe4e6;
+  border-color: #fecdd3;
+}
+
+.workspace :global(.finance-control) {
+  color: #334155;
+  background: #f8faff;
+  border: 1px solid #e2eaf5;
+  transition: background .18s, border-color .18s, box-shadow .18s;
+}
+
+.workspace :global(.finance-control:hover:not(:disabled)) { border-color: #bfdbfe; }
+.workspace :global(.finance-control:focus) {
+  background: #fff;
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px #dbeafe;
+}
+
+.workspace :is(button, a, input, select, textarea):focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+}
+
+.workspace :is(input, select, textarea):disabled { background: #f1f5f9; }
+.workspace input[type="checkbox"] { accent-color: #2563eb; }
+.workspace label > :is(input, select, textarea) { margin-top: .4rem; }
+.workspace h1 { color: #172b4d; letter-spacing: -.035em; }
+.workspace h2 { color: #253b5e; }
+.workspace :global(.finance-item) {
+  border: 1px solid #e6edf7;
+  background: linear-gradient(135deg, #fff 60%, #eff6ff80);
+  box-shadow: 0 3px 14px -10px #1e40af33;
+  transition: border-color .18s, box-shadow .18s;
+}
+.workspace :global(.finance-item:hover) {
+  border-color: #bfdbfe;
+  box-shadow: 0 8px 24px -14px #2563eb45;
+}
+.workspace :global(.finance-tabs) { border: 0; background: #eaf1fc; }
+.workspace :global(.finance-section-heading) {
+  border-bottom-color: #edf2fa;
+  background: linear-gradient(90deg, #f4f8ff, #fff);
+}
+
+.workspace table { border-collapse: separate; border-spacing: 0; }
+.workspace thead { background: #f0f5ff; color: #42618d; }
+.workspace th { font-weight: 600; border-color: transparent; }
+.workspace thead th:first-child { border-radius: .75rem 0 0 .75rem; }
+.workspace thead th:last-child { border-radius: 0 .75rem .75rem 0; }
+.workspace tbody tr { border-color: #edf2fa; }
+.workspace tbody td { border-bottom: 1px solid #edf2fa; }
+.workspace tbody tr:last-child td { border-bottom: 0; }
+.workspace tbody tr:nth-child(even) { background: #f8faff80; }
+.workspace tbody tr:hover { background: #eff6ff; }
+.workspace td { transition: background .15s; }
+
+.workspace :global(.finance-stat) {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--stat-border);
+  background: linear-gradient(120deg, #fff 15%, var(--stat-bg));
+  box-shadow: 0 4px 20px -12px var(--stat-border);
+}
+.workspace :global(.finance-stat)::after {
+  content: "";
+  position: absolute;
+  right: -1.5rem;
+  bottom: -2rem;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  background: var(--stat-border);
+  opacity: .2;
+  pointer-events: none;
+}
+.workspace :global(.finance-stat-icon) { color: var(--stat-ink); background: var(--stat-bg); }
+.workspace :global(.finance-stat-value) { color: var(--stat-ink); font-variant-numeric: tabular-nums; }
+
+@media (prefers-reduced-motion: reduce) {
+  .workspace *, .workspace *::after { transition: none !important; transform: none !important; }
+}
+@media print {
+  .workspace { background: transparent; color: #111; }
+  .workspace :global(.finance-panel), .workspace :global(.finance-stat) { box-shadow: none; background: #fff; }
+  .workspace :global(.finance-stat)::after { display: none; }
+  .workspace thead, .workspace tbody tr, .workspace tbody tr:hover { background: #fff; }
+}
